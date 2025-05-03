@@ -1,10 +1,12 @@
+import React from 'react';
 
-function BudgetOverview() {
-    return (
-      <div>
-        <h2>Resumen del Presupuesto</h2>
-      </div>
-    );
-  }
-  
-  export default BudgetOverview;
+function BudgetOverview({ budget }) {
+  return (
+    <div>
+      <h2>Resumen del Presupuesto</h2>
+      <p>Presupuesto Total Mensual: ${budget.total}</p>
+    </div>
+  );
+}
+
+export default BudgetOverview;
