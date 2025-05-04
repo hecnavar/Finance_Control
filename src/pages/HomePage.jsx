@@ -6,12 +6,12 @@ import AddCreditCardForm from '../components/AddCreditCardForm';
 import BudgetSetupForm from '../components/BudgetSetupForm';
 import AddExpenseForm from '../components/AddExpenseForm';
 
-function HomePage({ addCreditCard, creditCards, budget, onBudgetUpdate, onAddExpense, expenses }) {
+function HomePage({ addCreditCard, creditCards, budget, onBudgetUpdate, onAddExpense, expenses, totalExpenses }) {
   return (
     <div>
       <h1>Panel Principal</h1>
       <BudgetSetupForm onBudgetUpdate={onBudgetUpdate} />
-      <BudgetOverview budget={budget} />
+      <BudgetOverview budget={budget} totalExpenses={totalExpenses} />
       <AddCreditCardForm onAddCreditCard={addCreditCard} />
       <AddExpenseForm onAddExpense={onAddExpense} creditCards={creditCards} />
       <CreditCardList creditCards={creditCards} />
