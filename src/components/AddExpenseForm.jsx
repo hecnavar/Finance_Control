@@ -6,6 +6,8 @@ function AddExpenseForm({ onAddExpense, creditCards }) {
   const [category, setCategory] = useState('');
   const [date, setDate] = useState('');
   const [creditCardId, setCreditCardId] = useState('');
+  const [isFixed, setIsFixed] = useState(false);
+  const [frequency, setFrequency] = useState('monthly');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -15,6 +17,8 @@ function AddExpenseForm({ onAddExpense, creditCards }) {
       category,
       date,
       creditCardId,
+      isFixed,
+      frequency: isFixed ? frequency : null,
     };
     onAddExpense(newExpense);
     setDescription('');
@@ -22,6 +26,8 @@ function AddExpenseForm({ onAddExpense, creditCards }) {
     setCategory('');
     setDate('');
     setCreditCardId('');
+    setIsFixed(false);
+    setFrequency('monthly');
   };
 
   return (
@@ -87,6 +93,29 @@ function AddExpenseForm({ onAddExpense, creditCards }) {
                   {card.bankName} - Últimos: {card.cardNumber.slice(-4)}
                 </option>
               ))}
+            </select>
+          </div>
+        )}
+        <div>
+          <label htmlFor="isFixed">Gasto Fijo:</label>
+          <input
+            type="checkbox"
+            id="isFixed"
+            checked={isFixed}
+            onChange={(e) => setIsFixed(e.target.checked)}
+          />
+        </div>
+        {isFixed && (
+          <div>
+            <label htmlFor="frequency">Frecuencia:</label>
+            <select
+              id="frequency"
+              value={frequency}
+              onChange={(e) => setFrequency(e.target.value)}
+            >
+              <option value="monthly">Mensual</option>
+              <option value="weekly">Semanal</option>
+              <option value="biweekly">Quincenal</option>
             </select>
           </div>
         )}

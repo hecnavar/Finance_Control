@@ -12,6 +12,7 @@ function ExpenseList({ expenses }) {
             <li key={index}>
               {expense.description} - ${expense.amount} - {expense.date} ({expense.category})
               {expense.creditCardId && ` - Tarjeta: ...${expense.creditCardId.slice(-4)}`}
+              {expense.isFixed && <span style={{ marginLeft: '10px', fontWeight: 'bold', color: 'green' }}>[Fijo]</span>}
             </li>
           ))}
         </ul>
