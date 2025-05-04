@@ -1,0 +1,12 @@
+.payment-near {
+    background-color: #ffe0b2;
+    border: 1px solid orange;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .payment-near-text {
+    color: orange;
+    margin-left: 10px;
+    font-weight: bold;
+  }
