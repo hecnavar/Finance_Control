@@ -116,6 +116,7 @@ function AddExpenseForm({ onAddExpense, creditCards }) {
               <option value="monthly">Mensual</option>
               <option value="weekly">Semanal</option>
               <option value="biweekly">Quincenal</option>
+              <option value="bimonthly">Bimensual</option>
             </select>
           </div>
         )}
