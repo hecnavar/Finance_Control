@@ -1,7 +1,16 @@
-// src/components/CreditCardList.jsx
 import React from 'react';
+import styles from './CreditCardList.module.css';
 
 function CreditCardList({ creditCards }) {
+  const isPaymentDateNear = (paymentDate) => {
+    if (!paymentDate) return false;
+    const payment = new Date(paymentDate);
+    const today = new Date();
+    const sevenDaysLater = new Date();
+    sevenDaysLater.setDate(today.getDate() + 7);
+    return payment >= today && payment <= sevenDaysLater;
+  };
+
   return (
     <div>
       <h2>Mis Tarjetas de Crédito</h2>
@@ -10,12 +19,18 @@ function CreditCardList({ creditCards }) {
       ) : (
         <ul>
           {creditCards.map((card, index) => (
-            <li key={index}>
+            <li
+              key={index}
+              className={isPaymentDateNear(card.paymentDate) ? styles['payment-near'] : ''}
+            >
               {card.bankName} - Últimos dígitos: {card.cardNumber.slice(-4)} - Límite: ${card.creditLimit}
               <br />
               Fecha de Corte: {card.cutOffDate || 'No definida'}
               <br />
               Fecha de Pago: {card.paymentDate || 'No definida'}
+              {isPaymentDateNear(card.paymentDate) && (
+                <span className={ styles['payment-near-text']}>¡Pago Próximo!</span>
+              )}
             </li>
           ))}
         </ul>
