@@ -1,3 +1,4 @@
+// src/components/CreditCardList.jsx
 import React from 'react';
 
 function CreditCardList({ creditCards }) {
@@ -11,6 +12,10 @@ function CreditCardList({ creditCards }) {
           {creditCards.map((card, index) => (
             <li key={index}>
               {card.bankName} - Últimos dígitos: {card.cardNumber.slice(-4)} - Límite: ${card.creditLimit}
+              <br />
+              Fecha de Corte: {card.cutOffDate || 'No definida'}
+              <br />
+              Fecha de Pago: {card.paymentDate || 'No definida'}
             </li>
           ))}
         </ul>
