@@ -1,4 +1,3 @@
-// src/pages/HomePage.jsx
 import React from 'react';
 import CreditCardList from '../components/CreditCardList';
 import BudgetOverview from '../components/BudgetOverview';

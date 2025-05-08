@@ -1,13 +1,17 @@
-// src/App.js
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
+import CreditCardsPage from './pages/CreditCardsPage';
+import BudgetPage from './pages/BudgetPage';
+import ExpensesPage from './pages/ExpensesPage';
+import Navigation from './components/Navigation';
 
 function App() {
   const [creditCards, setCreditCards] = useState([]);
   const [budget, setBudget] = useState({ total: 0 });
   const [expenses, setExpenses] = useState([]);
   const [totalExpenses, setTotalExpenses] = useState(0);
-  const [estimatedFixedExpenses, setEstimatedFixedExpenses] = useState(0); // Nuevo estado
+  const [estimatedFixedExpenses, setEstimatedFixedExpenses] = useState(0);
 
   const addCreditCard = (newCard) => {
     setCreditCards([...creditCards, newCard]);
@@ -40,8 +44,8 @@ function App() {
             totalFixed += expense.amount;
             break;
           case 'bimonthly':
-              totalFixed += expense.amount / 2;
-              break;
+            totalFixed += expense.amount / 2;
+            break;
           default:
             break;
         }
@@ -56,18 +60,22 @@ function App() {
   }, [expenses]);
 
   return (
-    <div>
-      <HomePage
-        addCreditCard={addCreditCard}
-        creditCards={creditCards}
-        budget={budget}
-        onBudgetUpdate={updateBudget}
-        expenses={expenses}
-        onAddExpense={addExpense}
-        totalExpenses={totalExpenses}
-        estimatedFixedExpenses={estimatedFixedExpenses}
-      />
-    </div>
+    <BrowserRouter>
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<HomePage budget={budget} totalExpenses={totalExpenses} estimatedFixedExpenses={estimatedFixedExpenses} />} />
+        <Route path="/cards" element={<CreditCardsPage onAddCreditCard={addCreditCard} creditCards={creditCards} />} />
+        // src/App.js
+        <Route path="/budget" element={<BudgetPage 
+                budget={budget} 
+                onBudgetUpdate={updateBudget} 
+                totalExpenses={totalExpenses}
+                estimatedFixedExpenses={estimatedFixedExpenses}
+              />} />
+        <Route path="/expenses" element={<ExpensesPage onAddExpense={addExpense} expenses={expenses} creditCards={creditCards} />} />
+        {console.log("CreditCards en App.js para /expenses:", creditCards)}
+      </Routes>
+    </BrowserRouter>
   );
 }
 

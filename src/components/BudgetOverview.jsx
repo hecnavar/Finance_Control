@@ -1,6 +1,7 @@
 import React from 'react';
 
 function BudgetOverview({ budget, totalExpenses, estimatedFixedExpenses }) {
+  console.log("BudgetOverview props:", { budget, totalExpenses, estimatedFixedExpenses });
   const remainingBudget = budget.total - totalExpenses - estimatedFixedExpenses;
   return (
     <div>

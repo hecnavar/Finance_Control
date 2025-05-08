@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 function AddExpenseForm({ onAddExpense, creditCards }) {
+  console.log("AddExpenseForm se ha renderizado. Prop creditCards:", creditCards);
   const [description, setDescription] = useState('');
   const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('');
@@ -79,7 +80,7 @@ function AddExpenseForm({ onAddExpense, creditCards }) {
             required
           />
         </div>
-        {creditCards.length > 0 && (
+        {Array.isArray(creditCards) && creditCards.length > 0 && (
           <div>
             <label htmlFor="creditCard">Tarjeta de Crédito (Opcional):</label>
             <select

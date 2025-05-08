@@ -14,11 +14,11 @@ function CreditCardList({ creditCards }) {
   return (
     <div>
       <h2>Mis Tarjetas de Crédito</h2>
-      {creditCards.length === 0 ? (
+      {Array.isArray(creditCards) && creditCards.length === 0 ? (
         <p>No has agregado ninguna tarjeta de crédito aún.</p>
       ) : (
         <ul>
-          {creditCards.map((card, index) => (
+          {Array.isArray(creditCards) && creditCards.map((card, index) => (
             <li
               key={index}
               className={isPaymentDateNear(card.paymentDate) ? styles['payment-near'] : ''}
@@ -29,7 +29,7 @@ function CreditCardList({ creditCards }) {
               <br />
               Fecha de Pago: {card.paymentDate || 'No definida'}
               {isPaymentDateNear(card.paymentDate) && (
-                <span className={ styles['payment-near-text']}>¡Pago Próximo!</span>
+                <span className={styles['payment-near-text']}>¡Pago Próximo!</span>
               )}
             </li>
           ))}
