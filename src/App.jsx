@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import CreditCardsPage from './pages/CreditCardsPage';
 import BudgetPage from './pages/BudgetPage';
@@ -73,7 +73,7 @@ function App() {
                 estimatedFixedExpenses={estimatedFixedExpenses}
               />} />
         <Route path="/expenses" element={<ExpensesPage onAddExpense={addExpense} expenses={expenses} creditCards={creditCards} />} />
-        {console.log("CreditCards en App.js para /expenses:", creditCards)}
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
   );
