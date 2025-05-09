@@ -1,0 +1,25 @@
+.cardsContainer {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  @media (min-width: 768px) {
+    .cardsContainer {
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: flex-start;
+    }
+  
+
+    .cardsContainer > div {
+      width: 45%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .cardsContainer {
+      padding: 10px;
+    }
+  }
