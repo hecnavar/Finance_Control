@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './CreditCardList.module.css';
 
-function CreditCardList({ creditCards }) {
+function CreditCardList({ creditCards, onDeleteCard }) {
   const isPaymentDateNear = (paymentDate) => {
     if (!paymentDate) return false;
     const payment = new Date(paymentDate);
@@ -19,10 +19,7 @@ function CreditCardList({ creditCards }) {
       ) : (
         <ul>
           {Array.isArray(creditCards) && creditCards.map((card, index) => (
-            <li
-              key={index}
-              className={isPaymentDateNear(card.paymentDate) ? styles['payment-near'] : ''}
-            >
+            <li key={index} className={isPaymentDateNear(card.paymentDate) ? styles['payment-near'] : ''}>
               {card.bankName} - Últimos dígitos: {card.cardNumber.slice(-4)} - Límite: ${card.creditLimit}
               <br />
               Fecha de Corte: {card.cutOffDate || 'No definida'}
@@ -31,6 +28,7 @@ function CreditCardList({ creditCards }) {
               {isPaymentDateNear(card.paymentDate) && (
                 <span className={styles['payment-near-text']}>¡Pago Próximo!</span>
               )}
+              <button onClick={() => onDeleteCard(card.cardNumber)}>Eliminar</button>
             </li>
           ))}
         </ul>

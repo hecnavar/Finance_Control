@@ -17,6 +17,10 @@ function App() {
     setCreditCards([...creditCards, newCard]);
   };
 
+  const deleteCreditCard = (cardNumberToDelete) => {
+    setCreditCards(creditCards.filter(card => card.cardNumber !== cardNumberToDelete));
+  };
+
   const updateBudget = (newBudget) => {
     setBudget(newBudget);
   };
@@ -64,8 +68,7 @@ function App() {
       <Navigation />
       <Routes>
         <Route path="/" element={<HomePage budget={budget} totalExpenses={totalExpenses} estimatedFixedExpenses={estimatedFixedExpenses} />} />
-        <Route path="/cards" element={<CreditCardsPage onAddCreditCard={addCreditCard} creditCards={creditCards} />} />
-        // src/App.js
+        <Route path="/cards" element={<CreditCardsPage onAddCreditCard={addCreditCard} creditCards={creditCards} onDeleteCreditCard={deleteCreditCard} />}/>
         <Route path="/budget" element={<BudgetPage 
                 budget={budget} 
                 onBudgetUpdate={updateBudget} 
