@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import CreditCardsPage from './pages/CreditCardsPage';
 import BudgetPage from './pages/BudgetPage';
 import ExpensesPage from './pages/ExpensesPage';
 import Navigation from './components/Navigation';
+import expensesReducer from './components/expensesReducer';
+import { v4 as uuidv4 } from 'uuid';
+
 
 function App() {
   const [creditCards, setCreditCards] = useState([]);
   const [budget, setBudget] = useState({ total: 0 });
-  const [expenses, setExpenses] = useState([]);
+  const [expenses, dispatchExpenses] = useReducer(expensesReducer, []);
   const [totalExpenses, setTotalExpenses] = useState(0);
   const [estimatedFixedExpenses, setEstimatedFixedExpenses] = useState(0);
 
@@ -26,7 +29,11 @@ function App() {
   };
 
   const addExpense = (newExpense) => {
-    setExpenses([...expenses, newExpense]);
+    dispatchExpenses({ type: 'ADD_EXPENSE', payload: { ...newExpense, id: uuidv4() } });
+  };
+
+  const deleteExpense = (expenseId) => {
+    dispatchExpenses({ type: 'DELETE_EXPENSE', payload: expenseId });
   };
 
   const calculateTotalExpenses = (expensesList) => {
@@ -75,7 +82,7 @@ function App() {
                 totalExpenses={totalExpenses}
                 estimatedFixedExpenses={estimatedFixedExpenses}
               />} />
-        <Route path="/expenses" element={<ExpensesPage onAddExpense={addExpense} expenses={expenses} creditCards={creditCards} />} />
+        <Route path="/expenses" element={<ExpensesPage onAddExpense={addExpense} expenses={expenses} creditCards={creditCards} onDeleteExpense={deleteExpense}/>} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>

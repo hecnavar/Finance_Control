@@ -1,0 +1,28 @@
+.alertContainer {
+  background-color: #f0f0f0;
+  color: #333;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.alertContainer h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.warning {
+  background-color: #fff3cd;
+  color: #85640a;
+}

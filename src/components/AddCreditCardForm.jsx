@@ -22,8 +22,7 @@ function AddCreditCardForm({ onAddCreditCard }) {
     initialValues,
     validationSchema,
     (valuesToSubmit, reset) => {
-      onAddCreditCard(valuesToSubmit);
-      reset();
+      onAddCreditCard(valuesToSubmit, reset);
     }
   );
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ExpenseList({ expenses }) {
+function ExpenseList({ expenses, onDeleteExpense }) {
   return (
     <div>
       <h2>Últimos Gastos</h2>
@@ -8,7 +8,7 @@ function ExpenseList({ expenses }) {
         <p>No has registrado ningún gasto aún.</p>
       ) : (
         <ul>
-          {Array.isArray(expenses) && expenses.map((expense, index) => (
+          {expenses.map((expense, index) => (
             <li key={index}>
               {expense.description} - ${expense.amount} - {expense.date} ({expense.category})
               {expense.creditCardId && ` - Tarjeta: ...${expense.creditCardId.slice(-4)}`}
@@ -17,6 +17,7 @@ function ExpenseList({ expenses }) {
                   [Fijo{expense.frequency && ` (${expense.frequency})`}]
                 </span>
               )}
+              <button onClick={() => onDeleteExpense(expense.id)}>Eliminar</button>
             </li>
           ))}
         </ul>
