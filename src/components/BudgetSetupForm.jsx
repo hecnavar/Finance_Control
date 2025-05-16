@@ -1,13 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
+import useFormValidation from '../hooks/useFormValidation';
+import styles from './BudgetSetupForm.module.css';
 
 function BudgetSetupForm({ onBudgetUpdate }) {
-  const [totalBudget, setTotalBudget] = useState('');
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    onBudgetUpdate({ total: parseFloat(totalBudget) || 0 });
-    setTotalBudget('');
+  const initialValues = {
+    totalBudget: '',
   };
+  const validationSchema = {
+    totalBudget: { required: 'El presupuesto total es requerido', isNumber: 'Debe ser un número' },
+  };
+  const { values, errors, handleChange, handleSubmit, resetForm } = useFormValidation(
+    initialValues,
+    validationSchema,
+    (valuesToSubmit, reset) => {
+      onBudgetUpdate({ total: parseFloat(valuesToSubmit.totalBudget) || 0 });
+      reset();
+    }
+  );
 
   return (
     <div>
@@ -16,12 +25,13 @@ function BudgetSetupForm({ onBudgetUpdate }) {
         <div>
           <label htmlFor="totalBudget">Presupuesto Total:</label>
           <input
-            type="number"
+            type="text"
             id="totalBudget"
-            value={totalBudget}
-            onChange={(e) => setTotalBudget(e.target.value)}
-            required
+            name="totalBudget"
+            value={values.totalBudget}
+            onChange={handleChange}
           />
+          {errors.totalBudget && <p className={styles.error}>{errors.totalBudget}</p>}
         </div>
         <button type="submit">Guardar Presupuesto</button>
       </form>
