@@ -3,6 +3,7 @@ import CreditCardList from '../components/CreditCardList';
 import AddCreditCardForm from '../components/AddCreditCardForm';
 import Modal from '../components/Modal';
 import Alert from '../components/Alert';
+import styles from './CreditCardsPage.module.css';
 
 function CreditCardsPage({ onAddCreditCard, creditCards, onDeleteCreditCard }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -36,10 +37,16 @@ function CreditCardsPage({ onAddCreditCard, creditCards, onDeleteCreditCard }) {
   };
 
   return (
-    <div>
-      <h2>Gestión de Tarjetas de Crédito</h2>
-      <AddCreditCardForm onAddCreditCard={handleAddCreditCardAndShowAlert} />
-      <CreditCardList creditCards={creditCards} onDeleteCard={openModal} />
+    <div className={styles.cardsPageWrapper}>
+      <h2 className={styles.header}>Gestión de Tarjetas de Crédito</h2>
+      <div className={styles.contentContainer}>
+        <div className={styles.formSection}>
+          <AddCreditCardForm onAddCreditCard={handleAddCreditCardAndShowAlert} />
+        </div>
+        <div className={styles.listSection}>
+          <CreditCardList creditCards={creditCards} onDeleteCard={openModal} />
+        </div>
+      </div>
 
       {isModalOpen && (
         <Modal onClose={closeModal}>

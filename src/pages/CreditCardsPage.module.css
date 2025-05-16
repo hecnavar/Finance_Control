@@ -1,25 +1,100 @@
-.cardsContainer {
-    padding: 20px;
-    display: flex;
+/* src/pages/CreditCardsPage.module.css */
+
+.cardsPageWrapper {
+  padding: 20px;
+  background-color: #f4f7f6;
+  min-height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.header h2 {
+  font-size: 2.2em;
+  color: #2c3e50;
+  font-weight: 600;
+  margin: 0;
+}
+
+.contentContainer {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: 30px;
+}
+
+.formSection {
+  background-color: #ffffff;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  width: 45%;
+}
+
+.listSection {
+  background-color: #ffffff;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  width: 45%;
+}
+
+.listSection h3 {
+  font-size: 1.5em;
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .cardsPageWrapper {
+    padding: 15px;
+  }
+
+  .header h2 {
+    font-size: 1.8em;
+  }
+
+  .contentContainer {
     flex-direction: column;
     align-items: stretch;
+    gap: 20px;
   }
-  
-  @media (min-width: 768px) {
-    .cardsContainer {
-      flex-direction: row;
-      justify-content: space-around;
-      align-items: flex-start;
-    }
-  
 
-    .cardsContainer > div {
-      width: 45%;
-    }
+  .formSection,
+  .listSection {
+    width: 100%;
+    padding: 20px 25px;
   }
-  
-  @media (max-width: 480px) {
-    .cardsContainer {
-      padding: 10px;
-    }
+}
+
+@media (max-width: 480px) {
+  .cardsPageWrapper {
+    padding: 10px;
+    min-height: calc(100vh - 60px);
   }
+
+  .header {
+    margin-bottom: 20px;
+  }
+
+  .header h2 {
+    font-size: 1.5em;
+  }
+
+  .formSection,
+  .listSection {
+    padding: 15px 20px;
+    border-radius: 8px;
+  }
+}
