@@ -29,13 +29,16 @@ describe('<AddCreditCardForm />', () => {
     await userEvent.click(screen.getByRole('button', { name: /Agregar Tarjeta/i }));
 
     expect(mockOnAddCreditCard).toHaveBeenCalledTimes(1);
-expect(mockOnAddCreditCard).toHaveBeenCalledWith({
-      bankName: 'Banco Ejemplo',
-      cardNumber: '1234567890123456',
-      creditLimit: '1000',
-      interestRate: '',
-      cutOffDate: '2025-05-20',
-      paymentDate: '2025-05-28',
-    });
+    expect(mockOnAddCreditCard).toHaveBeenCalledWith(
+      {
+        bankName: 'Banco Ejemplo',
+        cardNumber: '1234567890123456',
+        creditLimit: '1000',
+        interestRate: '',
+        cutOffDate: '2025-05-20',
+        paymentDate: '2025-05-28',
+      },
+      expect.any(Function)
+    );
   });
 });
