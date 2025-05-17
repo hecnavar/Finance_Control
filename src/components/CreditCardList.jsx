@@ -28,7 +28,7 @@ function CreditCardList({ creditCards, onDeleteCard }) {
               {isPaymentDateNear(card.paymentDate) && (
                 <span className={styles['payment-near-text']}>¡Pago Próximo!</span>
               )}
-              <button onClick={() => onDeleteCard(card.cardNumber)}>Eliminar</button>
+              <button onClick={() => onDeleteCard(card.id)}>Eliminar</button>
             </li>
           ))}
         </ul>
