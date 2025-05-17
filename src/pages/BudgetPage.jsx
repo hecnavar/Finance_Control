@@ -1,4 +1,3 @@
-// BudgetPage.jsx
 import React from 'react';
 import BudgetSetupForm from '../components/BudgetSetupForm';
 import BudgetOverview from '../components/BudgetOverview';
